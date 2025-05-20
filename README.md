@@ -1,6 +1,6 @@
 # i hate sukhoi
 
-A browser-based shooting game built with vanilla JavaScript where players defend against waves of enemies and challenging boss battles.
+A browser-based shooting game built with vanilla JavaScript where players defend against waves of enemies and challenging boss battles. This is more developed game from the previoudsly py plane game that i post and this is stil WIP! https://github.com/Kokorody/simple-python-mini-game.git
 
 ![image](https://github.com/user-attachments/assets/b1b4cbf2-9fb9-4192-8038-1325b8a62882)
 
