@@ -1,0 +1,16 @@
+{
+  "name": "i-hate-sukhoi",
+  "version": "1.0.0",
+  "description": "A shooting game built with JavaScript and HTML5.",
+  "main": "src/scripts/game.js",
+  "scripts": {
+    "start": "live-server src",
+    "build": "echo 'Build step not defined'",
+    "test": "echo 'No tests specified'"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
+}
