@@ -1,13 +1,16 @@
-# Space Shooter Game
+# i hate sukhoi
 
 A browser-based shooting game built with vanilla JavaScript where players defend against waves of enemies and challenging boss battles.
+
+![image](https://github.com/user-attachments/assets/b1b4cbf2-9fb9-4192-8038-1325b8a62882)
+
 
 ## 🎮 Game Features
 
 - **Player Controls**:
   - Arrow keys for movement
   - Spacebar to shoot
-  - 'I' key to toggle invincibility (debug mode)
+  - 'I' key to toggle invincibility (debug mode, if u are skill issue and want to see the boss)
 
 - **Gameplay Elements**:
   - Regular enemies with shooting capabilities
@@ -97,3 +100,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 - Boss bullets may occasionally have irregular patterns
 - Background image might take a moment to load
+- the game is too hard XD, you can adjust it easily btw
