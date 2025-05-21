@@ -101,3 +101,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - Boss bullets may occasionally have irregular patterns
 - Background image might take a moment to load
 - the game is too hard XD, you can adjust it easily btw
+- long ahh loading after game over
