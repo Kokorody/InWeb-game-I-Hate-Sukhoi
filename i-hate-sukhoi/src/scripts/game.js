@@ -16,17 +16,19 @@ let nextBossScore = 100; //first boss at 100 points
 let score = 0;
 let currentTime = 30;
 let timerLastUpdated = Date.now();
+let isGameOver = false;
 
 function init() {
     player = new Player(
-        canvas.width / 2 - 25,  // x
-        canvas.height - 60,     // y
-        50,                     // width
-        50,                     // height
-        3                       // speed
+        canvas.width / 2 - 25,
+        canvas.height - 60,
+        50,
+        50,
+        3
     );
     spawnEnemies();
-    requestAnimationFrame(gameLoop);
+    // Start the game loop/
+    gameLoop();
 }
 
 function spawnEnemies() {
@@ -130,10 +132,63 @@ function checkPlayerEnemyCollision(player, enemy) {
 }
 
 function gameOver() {
-    alert(`Game Over! Final score: ${score}`);
-    document.location.reload();
+    if (isGameOver) return; // Prevent multiple calls
+    isGameOver = true;
+    
+    const gameOverElement = document.getElementById('gameOver');
+    const finalScoreElement = document.getElementById('finalScore');
+    const restartButton = document.getElementById('restartButton');
+    
+    // Update the final score
+    finalScoreElement.textContent = score;
+    
+    // Show the game over panel
+    gameOverElement.classList.remove('hidden');
+    
+    // Remove any existing listeners first
+    restartButton.removeEventListener('click', resetGame);
+    // Add new listener
+    restartButton.addEventListener('click', resetGame);
 }
 
+function resetGame() {
+    const gameOverElement = document.getElementById('gameOver');
+    gameOverElement.classList.add('hidden');
+    
+    // Cancel the previous animation frame
+    if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+    }
+    
+    // Reset game variables
+    enemies = [];
+    enemyBullets = [];
+    bullets = [];
+    boss = null;
+    nextBossScore = 100;
+    score = 0;
+    currentTime = 30;
+    timerLastUpdated = Date.now();
+    isGameOver = false;
+    
+    // Clear any existing intervals
+    clearAllIntervals();
+    
+    // Reset player position and start new game
+    init();
+}
+
+// Add this new function to clear intervals
+function clearAllIntervals() {
+    // Clear all existing intervals
+    const highestId = window.setInterval(() => {}, Number.MAX_SAFE_INTEGER);
+    for (let i = 1; i <= highestId; i++) {
+        window.clearInterval(i);
+    }
+}
+
+// Update the updateTimer function
 function updateTimer() {
     const now = Date.now();
     if (now - timerLastUpdated >= 1000) {
@@ -141,8 +196,7 @@ function updateTimer() {
         timerLastUpdated = now;
     }
     if (currentTime <= 0) {
-        alert("Game Over! Your final score: " + score);
-        document.location.reload();
+        gameOver();
     }
 }
 
@@ -175,9 +229,11 @@ function drawTimer() {
 }
 
 function gameLoop() {
-    update();
-    draw();
-    requestAnimationFrame(gameLoop);
+    if (!isGameOver) {
+        update();
+        draw();
+        animationFrameId = requestAnimationFrame(gameLoop);
+    }
 }
 
 window.addEventListener('keydown', (event) => {
