@@ -48,7 +48,13 @@ function update() {
         enemy.update();
         const newBullet = enemy.update();
         if (newBullet) {
-            enemyBullets.push(newBullet);
+            // Create enemy bullet with red color
+            enemyBullets.push(new Bullet(
+                enemy.x + enemy.width / 2,
+                enemy.y + enemy.height,
+                -4,
+                'red'  // Add red color for enemy bullets
+            ));
         }
     });
 
@@ -204,10 +210,7 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     player.draw(ctx);
     bullets.forEach(bullet => bullet.draw(ctx));
-    enemyBullets.forEach(bullet => {
-        ctx.fillStyle = 'red'; // Enemy bullets are red
-        bullet.draw(ctx);
-    });
+    enemyBullets.forEach(bullet => bullet.draw(ctx));  // Remove the red fillStyle override
     enemies.forEach(enemy => enemy.draw(ctx));
     drawScore();
     drawTimer();
@@ -250,13 +253,16 @@ window.addEventListener('keydown', (event) => {
         case 'ArrowDown':
             player.movementKeys.down = true;
             break;
-        case 'Space':
+        case 'Space': {
             const bullet = new Bullet(
                 player.x + player.width / 2 - 2.5,
-                player.y
+                player.y,
+                7,
+                '#FFE034FF' 
             );
             bullets.push(bullet);
             break;
+        }
          case 'KeyI':  // Press 'I' to toggle invincibility
             player.toggleInvincibility();
             break;

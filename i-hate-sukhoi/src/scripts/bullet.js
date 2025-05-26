@@ -1,10 +1,11 @@
 class Bullet {
-    constructor(x, y, speed = 7) {  // Added default speed
+    constructor(x, y, speed = 7, color = '#FFE034FF') {  
         this.x = x;
         this.y = y;
         this.speed = speed;
         this.width = 5;
         this.height = 15;
+        this.color = color;
     }
 
     update() {
@@ -12,7 +13,7 @@ class Bullet {
     }
 
     draw(context) {
-        context.fillStyle = 'white';
+        context.fillStyle = this.color;
         context.fillRect(this.x, this.y, this.width, this.height);
     }
 
