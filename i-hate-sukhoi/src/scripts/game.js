@@ -17,6 +17,8 @@ let score = 0;
 let currentTime = 30;
 let timerLastUpdated = Date.now();
 let isGameOver = false;
+let isPaused = false;
+let animationFrameId = null;
 
 function init() {
     player = new Player(
@@ -232,14 +234,38 @@ function drawTimer() {
 }
 
 function gameLoop() {
-    if (!isGameOver) {
+    if (!isGameOver && !isPaused) {
         update();
         draw();
-        animationFrameId = requestAnimationFrame(gameLoop);
+    } else if (isPaused) {
+        // Draw pause screen
+        drawPauseScreen();
     }
+    animationFrameId = requestAnimationFrame(gameLoop);
+}
+
+function drawPauseScreen() {
+    ctx.save();
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.fillStyle = 'white';
+    ctx.font = '48px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('PAUSED', canvas.width / 2, canvas.height / 2);
+    ctx.font = '24px Arial';
+    ctx.fillText('Press ESC to resume', canvas.width / 2, canvas.height / 2 + 40);
+    ctx.restore();
 }
 
 window.addEventListener('keydown', (event) => {
+    if (event.code === 'Escape') {
+        isPaused = !isPaused;
+        return;
+    }
+    
+    if (isPaused) return; // Ignore other inputs while paused
+    
     switch(event.code) {
         case 'ArrowLeft':
             player.movementKeys.left = true;
