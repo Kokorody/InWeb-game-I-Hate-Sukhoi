@@ -19,6 +19,7 @@ let timerLastUpdated = Date.now();
 let isGameOver = false;
 let isPaused = false;
 let animationFrameId = null;
+let isGameStarted = false;
 
 function init() {
     player = new Player(
@@ -183,7 +184,7 @@ function resetGame() {
     // Clear any existing intervals
     clearAllIntervals();
     
-    // Reset player position and start new game
+    isGameStarted = true; // Make sure the game stays started after reset
     init();
 }
 
@@ -234,11 +235,14 @@ function drawTimer() {
 }
 
 function gameLoop() {
+    if (!isGameStarted) {
+        return;
+    }
+    
     if (!isGameOver && !isPaused) {
         update();
         draw();
     } else if (isPaused) {
-        // Draw pause screen
         drawPauseScreen();
     }
     animationFrameId = requestAnimationFrame(gameLoop);
@@ -267,23 +271,23 @@ window.addEventListener('keydown', (event) => {
     if (isPaused) return; // Ignore other inputs while paused
     
     switch(event.code) {
-        case 'ArrowLeft':
+        case 'KeyA': 
             player.movementKeys.left = true;
             break;
-        case 'ArrowRight':
+        case 'KeyD': 
             player.movementKeys.right = true;
             break;
-        case 'ArrowUp':
+        case 'KeyW': 
             player.movementKeys.up = true;
             break;
-        case 'ArrowDown':
+        case 'KeyS':  
             player.movementKeys.down = true;
             break;
         case 'Space': {
             const bullet = new Bullet(
                 player.x + player.width / 2 - 2.5,
                 player.y,
-                7,
+                10,
                 '#FFE034FF' 
             );
             bullets.push(bullet);
@@ -297,19 +301,23 @@ window.addEventListener('keydown', (event) => {
 
 window.addEventListener('keyup', (event) => {
     switch(event.code) {
-        case 'ArrowLeft':
+        case 'KeyA':  
             player.movementKeys.left = false;
             break;
-        case 'ArrowRight':
+        case 'KeyD': 
             player.movementKeys.right = false;
             break;
-        case 'ArrowUp':
+        case 'KeyW':  
             player.movementKeys.up = false;
             break;
-        case 'ArrowDown':
+        case 'KeyS':  
             player.movementKeys.down = false;
             break;
     }
 });
 
-init();
+document.getElementById('startButton').addEventListener('click', () => {
+    document.getElementById('startScreen').style.display = 'none';
+    isGameStarted = true;
+    init();
+});
