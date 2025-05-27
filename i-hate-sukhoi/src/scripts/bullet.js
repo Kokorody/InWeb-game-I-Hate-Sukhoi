@@ -1,5 +1,5 @@
 class Bullet {
-    constructor(x, y, speed = 7, color = '#FFE034FF') {  
+    constructor(x, y, speed = 10, color = '#FFE034FF') {  
         this.x = x;
         this.y = y;
         this.speed = speed;
