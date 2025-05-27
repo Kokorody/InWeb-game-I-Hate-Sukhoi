@@ -7,17 +7,24 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <canvas id="gameCanvas" width="800" height="600"></canvas>
-    <script src="scripts/bullet.js"></script>
-    <script src="scripts/player.js"></script>
-    <script src="scripts/enemy.js"></script>
-    <script src="scripts/boss.js"></script>
-    <!-- Load main game last since it depends on other classes -->
-    <script src="scripts/game.js"></script>
-    <div id="gameOver" class="hidden">
-        <h1>Game Over</h1>
-        <p>Final Score: <span id="finalScore"></span></p>
-        <button id="restartButton">Restart</button>
+    <div class="game-container">
+        <h1 class="game-title">I Hate Sukhoi</h1>
+        <div id="startScreen">
+            <button id="startButton">Start Game</button>
+            <p class="instructions">Use WASD to move | Space to shoot | ESC to pause</p>
+        </div>
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <script src="scripts/bullet.js"></script>
+        <script src="scripts/player.js"></script>
+        <script src="scripts/enemy.js"></script>
+        <script src="scripts/boss.js"></script>
+        <!-- Load main game last since it depends on other classes -->
+        <script src="scripts/game.js"></script>
+        <div id="gameOver" class="hidden">
+            <h1>Game Over</h1>
+            <p>Final Score: <span id="finalScore"></span></p>
+            <button id="restartButton">Restart</button>
+        </div>
     </div>
     <footer>
         <p>Created by <a href="https://github.com/Kokorody">kokorody</a> | <a href="https://github.com/Kokorody/InWeb-game-I-Hate-Sukhoi.git">GitHub</a></p>
