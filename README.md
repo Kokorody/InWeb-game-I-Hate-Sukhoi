@@ -8,15 +8,19 @@ A browser-based shooting game built with vanilla JavaScript where players defend
 ## 🎮 Game Features
 
 - **Player Controls**:
-  - Arrow keys for movement
+  - WASD keys for movement
   - Spacebar to shoot
-  - 'I' key to toggle invincibility (debug mode, if u are skill issue and want to see the boss)
+  - ESC to pause
+  - 'I' key to toggle invincibility (debug mode)
 
 - **Gameplay Elements**:
   - Regular enemies with shooting capabilities
   - Boss battles every 200 points (first boss at 100 points)
   - Time-based scoring system
   - Kill enemies to extend play time (+2 seconds per kill)
+  - Start screen with instructions
+  - Pause functionality
+  - Game over screen with restart option
 
 - **Boss Mechanics**:
   - 50 HP health system
@@ -41,8 +45,10 @@ cd InWeb-game
 
 ## 🎯 How to Play
 
-- Move your ship using arrow keys
+- Click "Start Game" to begin
+- Move your ship using WASD keys
 - Shoot enemies with spacebar
+- Press ESC to pause the game
 - Avoid enemy bullets and collisions
 - Collect points by destroying enemies
 - Face boss battles at score milestones
